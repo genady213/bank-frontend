@@ -1,6 +1,7 @@
 .login-main{
     display: flex;
     flex-direction: column;
+    height: 100vh;
 }
 
 .login-top {
@@ -20,26 +21,68 @@
 
 .login-middle {
     display: flex;
+    flex-direction: column;
     flex: 0.7;
     background-color: grey;
     height: 100%;
     width:100%;
-    z-index: -100;
-    position:fixed;
 }
 
 .login-form{
     display: flex;
     justify-content: center;
     align-self: center;
-    width: 30%;
     height: auto;
-    margin-left: auto;
-    margin-right: 30px;
+}
+.loginFields {
+    color: gray;
+    border: 1px gray solid;
+    border-radius: 9px;
+    margin-top:10px;
+    margin-bottom: 15px;
+    padding: 5px 15px;
+    top:20px;
+}
+.buttondiv{
+    justify-content: center;
+    align-self: center;
+}
+
+.login-button {
+    border-radius: 8px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #000000;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    list-style: none;
+    outline: none;
+    padding: 4px 20px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
 }
 
 .error-user{
+    justify-content: center;
+    align-self: center;
+    margin-top: 10%;
     visibility: hidden;
     color: red;
     font-size: small;
+}
+
+.createAccountButton{
+    justify-content: center;
+    align-self: center;
+    color: #ffffff;
+    text-decoration: none;
+    position:relative;
 }

@@ -10,15 +10,21 @@ export function Login() {
                 <h1 className="title">ATM</h1>
         </div>
             <div className="login-middle">
-              <form className="login-form">
               <div 
                 id = "error"
                 className="error-user">Username or Password Incorrect</div>
+              <form className="login-form">
                   <input ref={myuser} type="text" id="Username" placeholder="Username"className="loginFields"></input>
-                  <br></br>
                   <input ref={mypass} type="password" id="Password" placeholder="Password" className="loginFields"></input>
-                  <br></br>
-                  <div className="buttondiv">
+              
+            </form>
+            <a
+                href="#"
+                className="createAccountButton"
+              >
+                Create Account
+              </a>
+            <div className="buttondiv">
                 <button
                   className="login-button"
                   type="button"
@@ -28,13 +34,7 @@ export function Login() {
                 </button>
               </div>
   
-              <a
-                href="#"
-                className="createAccountButton"
-              >
-                Create Account
-              </a>
-            </form>
+              
           </div>
       </div>
     );
