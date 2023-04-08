@@ -1,0 +1,27 @@
+.title2{
+    margin-left: 20px;
+}
+
+.accountsHome{
+    display: flex;
+    justify-content: center;
+}
+
+.newaccount{
+    display: flex;
+    flex-direction: column;
+	align-items: center;
+	font-size: 12px;
+	padding: 7px 10px;
+	cursor: pointer;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.accountCreate{
+    background: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid black;
+    padding: 5px;
+}

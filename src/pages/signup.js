@@ -11,15 +11,17 @@ import {
 } from 'react-router-dom';
 import Cookies from "js-cookie";
 
-export function Login() {
+export function Signup() {
+  const fname = useRef('');
+  const lname = useRef('');
   const myuser = useRef('');
   const mypass = useRef('');
   let navigate = useNavigate();
 
 
-  async function sendData(user, pass) {
+  async function sendData(first, last, user, pass) {
     var theans = "";
-    const req = await axios.post('/login', {"username":user,"password":pass})
+    const req = await axios.post('/signup', {"username":user,"password":pass,"first_name": first,"last_name": last})
     .then((response) => {
       console.log(response);
       theans = response.data.message;
@@ -37,8 +39,8 @@ export function Login() {
     let path = `/home`;
     navigate(path);
   };
-  const signup = () => {
-    let path = `/signup`;
+  const login = () => {
+    let path = `/`;
     navigate(path);
   };
 
@@ -50,7 +52,12 @@ export function Login() {
             <div className="login-middle">
               <div 
                 id = "error"
-                className="error-user">Username or Password Incorrect</div>
+                className="error-user">Failed to create account</div>
+                      <form className="login-form">
+                  <input ref={fname} type="text" id="Fname" placeholder="Firstname"className="loginFields"></input>
+                  <input ref={lname} type="text" id="Lname" placeholder="Lastname" className="loginFields"></input>
+              
+            </form>
               <form className="login-form">
                   <input ref={myuser} type="text" id="Username" placeholder="Username"className="loginFields"></input>
                   <input ref={mypass} type="password" id="Password" placeholder="Password" className="loginFields"></input>
@@ -58,10 +65,10 @@ export function Login() {
             </form>
             <a
                 href="#"
-                onClick={signup}
+                onClick={login}
                 className="createAccountButton"
               >
-                Create Account
+                Have an account? Log In
               </a>
             <div className="buttondiv">
                 <button
@@ -70,6 +77,8 @@ export function Login() {
                   value="Submit"
                   onClick={async () => {
                     const theToken = await sendData(
+                      fname.current.value,
+                      lname.current.value,
                       myuser.current.value,
                       mypass.current.value
                     );
@@ -82,7 +91,7 @@ export function Login() {
                     }
                   }}
                 >
-                  Login
+                  SignUp
                 </button>
               </div>
   
