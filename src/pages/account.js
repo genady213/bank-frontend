@@ -11,14 +11,9 @@ import './account.css';
 
 function Account({type,balance}) {
     
-  let navigate = useNavigate();
-    const routeChange = () => {
-        let path = `/home/account/`;
-        navigate(path);
-      };
+
     return(
-        <div className="account"
-        onClick={routeChange}>
+        <div className="account">
              {<h3>{type} </h3>
              }
              <h3>${balance} </h3>

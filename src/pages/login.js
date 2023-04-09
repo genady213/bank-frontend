@@ -16,7 +16,11 @@ export function Login() {
   const mypass = useRef('');
   let navigate = useNavigate();
 
-
+  useEffect(() => {
+    if (Cookies.get('userid') != null && Cookies.get('userid') != "") {
+      let path = `/home`;
+      navigate(path);
+    }}, []);
   async function sendData(user, pass) {
     var theans = "";
     const req = await axios.post('/login', {"username":user,"password":pass})

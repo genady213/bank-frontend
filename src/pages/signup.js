@@ -18,7 +18,11 @@ export function Signup() {
   const mypass = useRef('');
   let navigate = useNavigate();
 
-
+  useEffect(() => {
+    if (Cookies.get('userid') != null && Cookies.get('userid') != "") {
+      let path = `/home`;
+      navigate(path);
+    }}, []);
   async function sendData(first, last, user, pass) {
     var theans = "";
     const req = await axios.post('/signup', {"username":user,"password":pass,"first_name": first,"last_name": last})
