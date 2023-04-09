@@ -144,7 +144,7 @@ export function Home() {
                         type.current.value,
                         balance.current.value
                     );
-                    
+                    fetchData();
                   }}
                 >
                   +
