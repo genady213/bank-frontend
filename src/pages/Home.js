@@ -27,6 +27,10 @@ export function Home() {
       setOpen(false)
     };
     let navigate = useNavigate();
+    const audits = () => {
+      let path = `/audits`;
+      navigate(path);
+    };
     const logout = () => {
         let path = `/`;
         Cookies.set('userid', "");
@@ -113,6 +117,7 @@ export function Home() {
                       const redirectSuccess = await newTransaction(balances.current.value,context.current.value);
                       console.log(redirectSuccess)
                             if(redirectSuccess == "Success"){ 
+                               fetchData();
                                close();
                               }else{
                               document.getElementById("error2").style.visibility = 'visible';
@@ -125,8 +130,9 @@ export function Home() {
             )}
           </Popup>
               {accounts.map((account) => (
-                <div onClick={() => {setOpen(o => !o); setAccountSend(account.type)}}> 
+                <div onClick={() => {setOpen(o => !o); setAccountSend(account._id)}}> 
 					<Account 
+            keys={account._id}
 						type={account.type}
             balance={account.balance}
             /></div>
@@ -151,6 +157,13 @@ export function Home() {
                 </button>
                 </div>
                 </div>
+                <a
+                href="#"
+                onClick={audits}
+                className="audits"
+              >
+                View Past Transactions
+              </a>
           </div>
       </div>
     );

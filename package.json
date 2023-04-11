@@ -9,6 +9,7 @@
     "@material/textfield": "^14.0.0",
     "@mui/base": "^5.0.0-alpha.124",
     "@mui/core": "^5.0.0-alpha.54",
+    "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.11.16",
     "@mui/system": "^5.11.16",
     "@testing-library/jest-dom": "^5.16.5",

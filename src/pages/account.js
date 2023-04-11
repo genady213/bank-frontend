@@ -9,7 +9,7 @@ import {
 import Cookies from 'js-cookie';
 import './account.css';
 
-function Account({type,balance}) {
+function Account({type,balance,keys}) {
     
 
     return(

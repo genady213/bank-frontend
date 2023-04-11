@@ -1,0 +1,10 @@
+.arrow{
+    display: flex;
+    align-items: top;
+    margin-top: 20px;
+    margin-left: 20px;
+    
+}
+.arrow > .MuiSvgIcon-root:hover {
+    cursor: pointer;
+}
