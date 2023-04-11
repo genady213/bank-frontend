@@ -8,3 +8,16 @@
 .arrow > .MuiSvgIcon-root:hover {
     cursor: pointer;
 }
+
+.audits{
+    display: flex;
+    flex-direction: column;
+}
+
+.topTransaction{
+    display: flex;
+}
+
+.amount{
+    margin-left: 10px;
+}

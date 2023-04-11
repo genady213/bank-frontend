@@ -1,19 +1,24 @@
-import { useRef, useEffect, useCallback } from 'react';
+import { useRef, useEffect, useCallback, useState } from 'react';
 import './audits.css';
 import axios from '../axios';
+import Audit from './Audit'
 
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
-  useNavigate,
+  useNavigate, useParams,
 } from 'react-router-dom';
 import Cookies from "js-cookie";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 export function Audits() {
+  const { audit } = useParams()
   let navigate = useNavigate();
+  const [theAudits, setTheAudits] = useState([])
+	const [noAudits, setNoAudits] = useState(false)
+
   const routeChange = () => {
     let path = `/home`;
     navigate(path);
@@ -24,20 +29,33 @@ export function Audits() {
       navigate(path);
     }}, []);
 
-    const fetchData = useCallback(async () => {
-		const data = await axios.get('/audits/' + Cookies.get('userid'))
+  
+
+    useEffect(() => {
+      //console.log(audit);
+      const data = axios.get('/audits/' + audit)
 			.then((response) => {
 				console.log(response);
-                //setAccounts(response.data.accounts);
+        console.log(response.data.data.length)
+        if (!response.data.data.length){setNoAudits(true)}
+        setTheAudits(Object.values(response.data.data));
 			}, (error) => {
 				console.log(error);
 			});
 
 	}, [])
 
-    useEffect(() => {
-		fetchData()
-	}, [fetchData])
+
+  const userAudits = noAudits ? (
+		<Audit noAudits={noAudits} />
+	) : (
+		theAudits.map((audit) => (
+			<Audit
+        amount={audit.amount}
+        context={audit.context}
+			/>
+		))
+	)
 
       return (
         <div className="login-main">
@@ -53,6 +71,11 @@ export function Audits() {
             routeChange();
           }}/>
         </div>
+        <h3 className="amount">Transaction History:</h3>
+        
+        <div className="topTransaction"><div className="amount">Amount</div><div className="amount">Context</div></div>
+        
+        <div className="audits">{userAudits}</div>
           </div>
       </div>
     );

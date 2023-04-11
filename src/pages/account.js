@@ -13,7 +13,7 @@ function Account({type,balance,keys}) {
     
 
     return(
-        <div className="account">
+        <div className="account2">
              {<h3>{type} </h3>
              }
              <h3>${balance} </h3>

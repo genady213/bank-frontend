@@ -27,8 +27,9 @@ export function Home() {
       setOpen(false)
     };
     let navigate = useNavigate();
+    const [audit, setAudit, auditRef] = useState()
     const audits = () => {
-      let path = `/audits`;
+      let path = `/audits/` + auditRef.current;
       navigate(path);
     };
     const logout = () => {
@@ -130,12 +131,18 @@ export function Home() {
             )}
           </Popup>
               {accounts.map((account) => (
-                <div onClick={() => {setOpen(o => !o); setAccountSend(account._id)}}> 
+                <div className="account" onClick={() => {setOpen(o => !o); setAccountSend(account._id)}}> 
 					<Account 
             keys={account._id}
 						type={account.type}
             balance={account.balance}
-            /></div>
+            /><a
+            href="#"
+            onClick={() => {setAudit(account._id); audits()}}
+            className="audits"
+          >
+            View Past Transactions
+          </a></div>
 
 				))}
                 <div className="newaccount">
@@ -157,13 +164,7 @@ export function Home() {
                 </button>
                 </div>
                 </div>
-                <a
-                href="#"
-                onClick={audits}
-                className="audits"
-              >
-                View Past Transactions
-              </a>
+                
           </div>
       </div>
     );

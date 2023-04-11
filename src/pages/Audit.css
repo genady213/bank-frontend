@@ -1,0 +1,7 @@
+.audit{
+    display: flex;
+    flex-direction: row;
+}
+.audit_context{
+    margin: 20px;
+}
