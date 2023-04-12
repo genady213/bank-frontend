@@ -16,6 +16,7 @@ import {
 } from 'react-router-dom';
 import Cookies from "js-cookie";
 export function Home() {
+  const [version, setVersion, versionRef] = useState()
   const [accountSend, setAccountSend, accountSendRef] = useState()
   const context = useRef('');
   const balances = useRef('');
@@ -55,9 +56,22 @@ export function Home() {
         return theans;
       }
 
+      async function getAccount() {
+        var theans = "";
+        const req = await axios.get('/accounts/' + Cookies.get('userid') + '/' + accountSendRef.current)
+        .then((response) => {
+          console.log(response);
+          theans = response.data.message;
+        return theans;
+        }, (error) => {
+          console.log(error);
+        });
+        return theans;
+      }
+
       async function newTransaction(amount,context) {
         var theans = "";
-        const req = await axios.put('/transaction', {"amount":amount,"account":accountSendRef.current, "context":context})
+        const req = await axios.put('/transaction', {"amount":amount,"account":accountSendRef.current, "version":versionRef.current, "context":context})
         .then((response) => {
           console.log(response);
           theans = response.data.message;
@@ -131,11 +145,12 @@ export function Home() {
             )}
           </Popup>
               {accounts.map((account) => (
-                <div className="account" onClick={() => {setOpen(o => !o); setAccountSend(account._id)}}> 
+                <div className="account" onClick={() => {setOpen(o => !o); setAccountSend(account._id); setVersion(account.version)}}> 
 					<Account 
             keys={account._id}
 						type={account.type}
             balance={account.balance}
+            version={account.version}
             /><a
             href="#"
             onClick={() => {setAudit(account._id); audits()}}

@@ -1,7 +1,7 @@
 import React from "react"
 import "./Audit.css"
 
-export function Audit({ noAudits, context, amount }) {
+export function Audit({ noAudits, context, amount, version }) {
 	if (noAudits) return <div className="noAudits">(Nothing to display)</div>
 
 	return (
